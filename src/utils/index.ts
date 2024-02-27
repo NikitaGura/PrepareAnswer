@@ -1,3 +1,4 @@
 import Colors from './color';
+import Dicationary from './dicationary';
 
-export {Colors};
+export {Colors, Dicationary};

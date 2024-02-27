@@ -1,7 +1,12 @@
-import {View} from 'react-native';
+import {ScreenTitle, ScreenWrapper} from '../../components';
+import {Dicationary} from '../../utils';
 
 const MainScreenQuestions = () => {
-  return <View />;
+  return (
+    <ScreenWrapper>
+      <ScreenTitle title={Dicationary.titleMainScreenQuestions} />
+    </ScreenWrapper>
+  );
 };
 
 export default MainScreenQuestions;

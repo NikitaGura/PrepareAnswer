@@ -10,6 +10,11 @@ type RootStackParamList = {
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
+const defaultStackOption = {
+  title: '',
+  headerStyle: {backgroundColor: Colors.PrimaryBlue75},
+};
+
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -17,10 +22,7 @@ const Navigation = () => {
         <RootStack.Screen
           name="MainScreenQuestions"
           component={MainScreenQuestions}
-          options={{
-            title: '',
-            headerStyle: {backgroundColor: Colors.PrimaryBlue75},
-          }}
+          options={defaultStackOption}
         />
       </RootStack.Navigator>
     </NavigationContainer>
