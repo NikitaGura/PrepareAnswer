@@ -1,3 +1,9 @@
 import Navigation from './navigation';
+import {
+  CreateQuestionsNavigationProp,
+  MainScreenQuestionsNavigationProp,
+  ScreensName,
+} from './navigation.type';
 
-export {Navigation};
+export {Navigation, ScreensName};
+export type {CreateQuestionsNavigationProp, MainScreenQuestionsNavigationProp};

@@ -4,6 +4,7 @@ const Dictionary = {
   startQuestions: 'Start Questions',
   editeQuestions: 'Edite Questions',
   deleteQuestions: 'Delete Questions',
+  createQuestions: 'Create Questions',
 };
 
 export default Dictionary;

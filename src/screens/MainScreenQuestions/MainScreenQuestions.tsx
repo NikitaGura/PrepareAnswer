@@ -12,22 +12,30 @@ import PopupSelectedQuestion from './PopupSelectedQuestion';
 import {observer} from 'mobx-react-lite';
 import {useStore} from '../../stores';
 import {Questions} from '../../models';
+import {useNavigation} from '@react-navigation/native';
+import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 const MainScreenQuestions = () => {
   const {
     questions: {list},
   } = useStore();
 
+  const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
+
   const renderItem = useCallback(
     ({item}: {item: Questions}) => <ItemListQuestion questions={item} />,
     [],
   );
 
+  const onPressPlusButton = useCallback(() => {
+    navigation.push(ScreensName.CreateQuestions);
+  }, [navigation]);
+
   return (
     <ScreenWrapper>
       <View style={styles.headerContainer}>
         <ScreenTitle title={Dictionary.titleMainScreenQuestions} />
-        <PlusButton onPress={() => {}} />
+        <PlusButton onPress={onPressPlusButton} />
       </View>
       <FlatList
         data={list}
@@ -36,7 +44,7 @@ const MainScreenQuestions = () => {
         keyExtractor={({id}) => id.toString()}
       />
       <ModalPopup>
-        <PopupSelectedQuestion selectedQuestionListTitle="test" />
+        <PopupSelectedQuestion />
       </ModalPopup>
     </ScreenWrapper>
   );
