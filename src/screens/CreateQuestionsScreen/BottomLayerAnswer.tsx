@@ -6,7 +6,7 @@ import {useStore} from '../../stores';
 
 const BottomLayerAnswer = () => {
   const {
-    createQuestions: {currentState},
+    createQuestions: {currentState, inputeStore},
   } = useStore();
 
   return (
@@ -22,6 +22,7 @@ const BottomLayerAnswer = () => {
           style={styles.button}
           styleText={styles.buttonText}
           title={Dictionary.next}
+          disabled={inputeStore.isValueEmpty}
           onPress={() => currentState.moveNext()}
         />
       </View>
@@ -29,6 +30,7 @@ const BottomLayerAnswer = () => {
         style={styles.saveButton}
         styleText={styles.buttonText}
         title={Dictionary.saveQuestions}
+        disabled={inputeStore.isValueEmpty}
         onPress={() => currentState.save()}
       />
     </View>

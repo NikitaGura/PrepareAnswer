@@ -14,14 +14,35 @@ type Props = {
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
+  disabled?: boolean;
 };
 
-const PrimaryButton = ({title, onPress, style, styleText}: Props) => {
-  const customStyle = useMemo(() => [styles.container, style], [style]);
-  const customStyleText = useMemo(() => [styles.text, styleText], [styleText]);
+const PrimaryButton = ({title, disabled, onPress, style, styleText}: Props) => {
+  const customStyle = useMemo(
+    () => [
+      styles.container,
+      style,
+      {
+        backgroundColor: disabled
+          ? Colors.GrayLightPrimary
+          : Colors.PrimaryBlue75,
+      },
+    ],
+    [style, disabled],
+  );
+  const customStyleText = useMemo(
+    () => [
+      styles.text,
+      styleText,
+      {
+        color: disabled ? Colors.DarkPrimary50 : Colors.GrayLightPrimary,
+      },
+    ],
+    [styleText, disabled],
+  );
 
   return (
-    <TouchableOpacity style={customStyle} onPress={onPress}>
+    <TouchableOpacity disabled={disabled} style={customStyle} onPress={onPress}>
       <Text style={customStyleText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -30,7 +51,6 @@ const PrimaryButton = ({title, onPress, style, styleText}: Props) => {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
-    backgroundColor: Colors.PrimaryBlue75,
     minWidth: 240,
     minHeight: 60,
     alignItems: 'center',
@@ -38,7 +58,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Roboto Medium',
-    color: Colors.GrayLightPrimary,
     fontSize: 20,
   },
 });

@@ -6,7 +6,7 @@ import {useStore} from '../../stores';
 
 const BottomLayerQuestion = () => {
   const {
-    createQuestions: {currentState},
+    createQuestions: {currentState, inputeStore},
   } = useStore();
 
   return (

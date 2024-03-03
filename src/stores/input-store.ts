@@ -14,6 +14,10 @@ class InputStore {
   clearValue = () => {
     this.value = '';
   };
+
+  get isValueEmpty() {
+    return !this.value;
+  }
 }
 
 export default InputStore;
