@@ -21,6 +21,7 @@ const BottomLayerQuestion = () => {
         style={styles.button}
         styleText={styles.buttonText}
         title={Dictionary.next}
+        disabled={inputeStore.isValueEmpty}
         onPress={() => currentState.moveNext()}
       />
     </View>
