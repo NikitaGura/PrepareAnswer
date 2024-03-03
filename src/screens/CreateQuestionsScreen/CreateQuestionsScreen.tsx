@@ -1,28 +1,24 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {
-  PrimaryButton,
-  PrimaryTextInput,
-  ScreenTitle,
-  ScreenWrapper,
-} from '../../components';
+import {PrimaryTextInput, ScreenTitle, ScreenWrapper} from '../../components';
 import {Colors, Dictionary} from '../../utils';
+import {useStore} from '../../stores';
+import {observer} from 'mobx-react-lite';
 
 const CreateQuestionsScreen = () => {
+  const {
+    createQuestions: {currentState},
+  } = useStore();
+
+  const BottomLayer = currentState.getBottomLayout();
+
   return (
     <ScreenWrapper>
       <ScrollView>
         <ScreenTitle title={Dictionary.createQuestions} />
         <View style={styles.container}>
-          <Text style={styles.topText}>
-            {Dictionary.pleaseWriteNameOfQuestions}
-          </Text>
-          <PrimaryTextInput placeholder={Dictionary.typeName} />
-          <PrimaryButton
-            style={styles.nextButton}
-            styleText={styles.nextButtonText}
-            title={Dictionary.next}
-            onPress={() => {}}
-          />
+          <Text style={styles.topText}>{currentState.getTopTitle()}</Text>
+          <PrimaryTextInput placeholder={currentState.getPlaceholder()} />
+          <BottomLayer />
         </View>
       </ScrollView>
     </ScreenWrapper>
@@ -40,12 +36,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 25,
   },
-  nextButton: {
-    marginTop: 50,
-  },
-  nextButtonText: {
-    fontSize: 28,
-  },
 });
 
-export default CreateQuestionsScreen;
+export default observer(CreateQuestionsScreen);
