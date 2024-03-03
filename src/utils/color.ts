@@ -7,6 +7,7 @@ const Colors = {
   GrayLightPrimary: '#DBE9F6',
   LightBluePrimary25: '#2CCCF340',
   PrimaryBlue: '#5350D5',
+  DarkPrimary25: '#010F3340',
 };
 
 export default Colors;

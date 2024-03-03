@@ -1,5 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {Colors} from '../utils';
+import {memo} from 'react';
 
 type Props = {
   title: string;
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScreenTitle;
+export default memo(ScreenTitle);

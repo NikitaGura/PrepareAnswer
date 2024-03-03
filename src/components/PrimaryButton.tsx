@@ -4,22 +4,25 @@ import {
   StyleSheet,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
 import {Colors} from '../utils';
-import {useMemo} from 'react';
+import {memo, useMemo} from 'react';
 
 type Props = {
   title: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+  styleText?: StyleProp<TextStyle>;
 };
 
-const PrimaryButton = ({title, onPress, style}: Props) => {
+const PrimaryButton = ({title, onPress, style, styleText}: Props) => {
   const customStyle = useMemo(() => [styles.container, style], [style]);
+  const customStyleText = useMemo(() => [styles.text, styleText], [styleText]);
 
   return (
     <TouchableOpacity style={customStyle} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={customStyleText}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -40,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrimaryButton;
+export default memo(PrimaryButton);

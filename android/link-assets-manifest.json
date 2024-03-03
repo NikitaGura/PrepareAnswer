@@ -12,6 +12,10 @@
     {
       "path": "assets/fonts/Roboto-Medium.ttf",
       "sha1": "01d4ccbdf1ba0a8e14497521686e1246f8dc57c4"
+    },
+    {
+      "path": "assets/fonts/Roboto-Regular.ttf",
+      "sha1": "a18dcbf99c8d2325c2fbf22a64e8cc28a0cf4d3b"
     }
   ]
 }
