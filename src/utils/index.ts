@@ -1,4 +1,5 @@
 import Colors from './color';
-import Dicationary from './dicationary';
+import Dictionary from './dictionary';
+import {mockQuestionsList} from './mocks';
 
-export {Colors, Dicationary};
+export {Colors, Dictionary, mockQuestionsList};

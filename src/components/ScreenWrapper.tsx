@@ -11,7 +11,9 @@ const ScreenWrapper = ({children}: Props) => {
 
 const styles = StyleSheet.create({
   screen: {
+    marginTop: 15,
     margin: 10,
+    flex: 1,
   },
 });
 

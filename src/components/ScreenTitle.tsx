@@ -20,6 +20,7 @@ const ScreenTitle = ({title}: Props) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 32,
+    fontFamily: 'Roboto Bold',
     color: Colors.DarkPrimary,
   },
   contianerBorder: {
