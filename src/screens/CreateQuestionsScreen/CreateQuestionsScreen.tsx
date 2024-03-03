@@ -6,7 +6,7 @@ import {observer} from 'mobx-react-lite';
 
 const CreateQuestionsScreen = () => {
   const {
-    createQuestions: {currentState},
+    createQuestions: {currentState, inputeStore},
   } = useStore();
 
   const BottomLayer = currentState.getBottomLayout();
@@ -17,7 +17,11 @@ const CreateQuestionsScreen = () => {
         <ScreenTitle title={Dictionary.createQuestions} />
         <View style={styles.container}>
           <Text style={styles.topText}>{currentState.getTopTitle()}</Text>
-          <PrimaryTextInput placeholder={currentState.getPlaceholder()} />
+          <PrimaryTextInput
+            placeholder={currentState.getPlaceholder()}
+            value={inputeStore.value}
+            updateValue={inputeStore.updateValue}
+          />
           <BottomLayer />
         </View>
       </ScrollView>

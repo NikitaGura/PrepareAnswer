@@ -7,7 +7,7 @@ export class Question {
 
   constructor(question: string) {
     this.question = question;
-    this.id = uuid.v4();
+    this.id = uuid.v4() as string;
   }
 }
 
@@ -19,6 +19,6 @@ export class Questions {
 
   constructor(title: string) {
     this.title = title;
-    this.id = uuid.v4();
+    this.id = uuid.v4() as string;
   }
-};
+}

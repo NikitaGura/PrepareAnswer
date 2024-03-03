@@ -7,7 +7,7 @@ import {CreateQuestionsStore} from '../stores';
 import {Dictionary} from '../utils';
 
 abstract class CreateQuestionsState {
-  protected context: CreateQuestionsStore | undefined;
+  protected context: CreateQuestionsStore | null = null;
 
   protected abstract topTitle: string;
   protected abstract placeholder: string;
@@ -36,10 +36,43 @@ class CreateQuestionsQuestion extends CreateQuestionsState {
   protected bottomLayout = BottomLayerQuestion;
 
   moveNext = () => {
-    this.context?.moveTo(new CreateQuestionsAnswer());
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+
+    if (this.context.selectedQuestion) {
+      this.context.updateQuestion();
+    } else {
+      this.context.createQuestion();
+    }
+
+    this.context.inputeStore.updateValue(
+      this.context.selectedQuestion?.answer || '',
+    );
+
+    this.context.moveTo(new CreateQuestionsAnswer());
   };
+
   moveBack = () => {
-    this.context?.moveTo(new CreateQuestionsName());
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+    if (this.context.selectedQuestion) {
+      this.context.updateQuestion();
+    }
+
+    if (this.context.getSelectedIndexQuestion() > 0) {
+      this.context.backIndexQuestion();
+      this.context.inputeStore.updateValue(
+        this.context.selectedQuestion?.answer || '',
+      );
+      this.context.moveTo(new CreateQuestionsAnswer());
+    } else {
+      this.context.inputeStore.updateValue(
+        this.context.getQuestions()?.title || '',
+      );
+      this.context.moveTo(new CreateQuestionsName());
+    }
   };
   save = () => {};
 }
@@ -50,25 +83,69 @@ class CreateQuestionsName extends CreateQuestionsState {
   protected bottomLayout = BottomLayerName;
 
   moveNext = () => {
-    this.context?.moveTo(new CreateQuestionsQuestion());
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+
+    if (this.context.getQuestions() === null) {
+      this.context.createQuestions();
+    } else {
+      this.context.updateQuestions();
+    }
+
+    this.context.inputeStore.updateValue(
+      this.context.selectedQuestion?.question || '',
+    );
+
+    this.context.moveTo(new CreateQuestionsQuestion());
   };
   moveBack = () => {};
   save = () => {};
 }
 
 class CreateQuestionsAnswer extends CreateQuestionsState {
-  protected topTitle: string = Dictionary.pleaseWriteQuestion;
-  protected placeholder: string = Dictionary.typeQuestion;
+  protected topTitle: string = Dictionary.pleaseWriteAnswer;
+  protected placeholder: string = Dictionary.typeAnswer;
   protected bottomLayout = BottomLayerAnswer;
 
   moveBack = () => {
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+
+    if (this.context.selectedQuestion) {
+      this.context.updateAnswer();
+    }
+
+    this.context.inputeStore.updateValue(
+      this.context.selectedQuestion?.question || '',
+    );
+
     this.context?.moveTo(new CreateQuestionsQuestion());
   };
   moveNext = () => {
-    this.context?.moveTo(new CreateQuestionsQuestion());
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+
+    if (this.context.selectedQuestion) {
+      this.context.updateAnswer();
+    }
+
+    this.context.nextIndexQuestion();
+
+    this.context.inputeStore.updateValue(
+      this.context.selectedQuestion?.question || '',
+    );
+
+    this.context.moveTo(new CreateQuestionsQuestion());
   };
   save = () => {
-    this.context?.moveTo(new CreateQuestionsName());
+    if (this.context === null) {
+      throw Error('Context is null');
+    }
+
+    this.context.moveTo(new CreateQuestionsName());
   };
 }
 

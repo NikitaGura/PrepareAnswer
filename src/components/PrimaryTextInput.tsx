@@ -12,9 +12,11 @@ const paddingContainer = 20;
 
 type Props = {
   placeholder: string;
+  value: string;
+  updateValue: (value: string) => void;
 };
 
-const PrimaryTextInput = ({placeholder}: Props) => {
+const PrimaryTextInput = ({placeholder, value, updateValue}: Props) => {
   const [height, setHeight] = useState(0);
 
   const onContentSizeChange = useCallback(
@@ -37,6 +39,8 @@ const PrimaryTextInput = ({placeholder}: Props) => {
         selectionColor={Colors.PrimaryBlue}
         multiline={true}
         onContentSizeChange={onContentSizeChange}
+        value={value}
+        onChangeText={updateValue}
       />
     </View>
   );
