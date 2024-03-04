@@ -10,6 +10,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 const defaultStackOption = {
   title: '',
   headerStyle: {backgroundColor: Colors.PrimaryBlue75},
+  headerBackVisible: false,
 };
 
 const Navigation = () => {
