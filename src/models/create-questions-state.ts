@@ -1,4 +1,4 @@
-import { RealmManager } from '../realm';
+import {RealmManager} from '../realm';
 import {
   BottomLayerAnswer,
   BottomLayerName,

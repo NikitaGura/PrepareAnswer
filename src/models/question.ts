@@ -10,7 +10,7 @@ export class Question {
     this.id = uuid.v4() as string;
   }
 
-  static mapRealm = (data: any) => {
+  static mapFromRealm = (data: any) => {
     const result = new Question(data.question || '');
     result.answer = data.answer || '';
     result.id = data.id || (uuid.v4() as string);
@@ -29,12 +29,16 @@ export class Questions {
   }
 
   get number() {
-    return this.questions.length + 1;
+    return this.questions.length;
   }
 
-  static mapRealm = (data: any) => {
+  static mapFromRealm = (data: any) => {
     const result = new Questions(data.title || '');
     result.id = data.id || (uuid.v4() as string);
+    const questions = data.questions;
+    for (let i = 0; i < questions.length; i++) {
+      result.questions.push(Question.mapFromRealm(questions[i]));
+    }
     return result;
   };
 }

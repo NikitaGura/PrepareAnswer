@@ -6,7 +6,7 @@ class RealmManager {
   private realm: Realm;
 
   public constructor() {
-    this.realm = new Realm({schema: this.getSchems(), schemaVersion: 2});
+    this.realm = new Realm({schema: this.getSchems(), schemaVersion: 3});
   }
 
   getSchems() {
@@ -15,10 +15,7 @@ class RealmManager {
 
   createQuestions(questions: Questions) {
     this.realm.write(() => {
-      this.realm.create(QuestionsRealm, {
-        id: questions.id,
-        title: questions.title,
-      });
+      this.realm.create(QuestionsRealm, questions);
     });
   }
 
@@ -28,7 +25,7 @@ class RealmManager {
 
     if (response) {
       for (let i = 0; i < response.length; i++) {
-        result.push(Questions.mapRealm(response[i]));
+        result.push(Questions.mapFromRealm(response[i]));
       }
     }
 
