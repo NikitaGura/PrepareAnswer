@@ -1,3 +1,4 @@
+import { RealmManager } from '../realm';
 import {
   BottomLayerAnswer,
   BottomLayerName,
@@ -143,6 +144,11 @@ class CreateQuestionsAnswer extends CreateQuestionsState {
   save = () => {
     if (this.context === null) {
       throw Error('Context is null');
+    }
+
+    const questions = this.context.getQuestions();
+    if (questions !== null) {
+      RealmManager.createQuestions(questions);
     }
 
     this.context.moveTo(new CreateQuestionsName());

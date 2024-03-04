@@ -1,13 +1,14 @@
 import {makeAutoObservable} from 'mobx';
 import {Questions} from '../models';
-import {mockQuestionsList} from '../utils';
+import {RealmManager} from '../realm';
 
 class QuestionsStore {
-  list: Questions[] = mockQuestionsList;
+  list: Questions[];
   selectedListQuestions: Questions | null = null;
 
   constructor() {
     makeAutoObservable(this);
+    this.list = RealmManager.getQuestionsList();
   }
 
   selectListQuestions = (questions: Questions) => {
