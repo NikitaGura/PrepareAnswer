@@ -22,7 +22,7 @@ const ItemListQuestion = ({questions}: Props) => {
 
   const onSelectQuetions = useCallback(() => {
     selectListQuestions(questions);
-    navigation.navigate(ScreensName.Modal);
+    navigation.push(ScreensName.Modal);
   }, [navigation, questions, selectListQuestions]);
 
   return (

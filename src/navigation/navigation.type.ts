@@ -4,12 +4,14 @@ enum ScreensName {
   MainScreenQuestions = 'MainScreenQuestions',
   CreateQuestions = 'CreateQuestions',
   Modal = 'Modal',
+  CheckingQuestions = 'CheckingQuestions'
 }
 
 type RootStackParamList = {
   MainScreenQuestions: undefined;
   CreateQuestions: undefined;
   Modal: undefined;
+  CheckingQuestions: undefined;
 };
 
 type MainScreenQuestionsNavigationProp = NativeStackNavigationProp<
@@ -27,10 +29,16 @@ type ModalNavigationProp = NativeStackNavigationProp<
   ScreensName.Modal
 >;
 
+type CheckingQuestionsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  ScreensName.CheckingQuestions
+>;
+
 export {ScreensName};
 export type {
   RootStackParamList,
   CreateQuestionsNavigationProp,
   MainScreenQuestionsNavigationProp,
   ModalNavigationProp,
+  CheckingQuestionsNavigationProp,
 };

@@ -4,6 +4,7 @@ import {
   MainScreenQuestionsNavigationProp,
   ScreensName,
   ModalNavigationProp,
+  CheckingQuestionsNavigationProp,
 } from './navigation.type';
 
 export {Navigation, ScreensName};
@@ -11,4 +12,5 @@ export type {
   CreateQuestionsNavigationProp,
   MainScreenQuestionsNavigationProp,
   ModalNavigationProp,
+  CheckingQuestionsNavigationProp,
 };

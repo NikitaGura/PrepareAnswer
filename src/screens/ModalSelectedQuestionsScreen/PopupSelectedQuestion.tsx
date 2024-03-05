@@ -3,11 +3,15 @@ import {Popup, PrimaryButton} from '../../components';
 import {Colors, Dictionary} from '../../utils';
 import {useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
+import {useNavigation} from '@react-navigation/native';
+import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 const PopupSelectedQuestion = () => {
   const {
     questions: {selectedListQuestions},
   } = useStore();
+
+  const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
 
   return (
     <Popup>
@@ -18,7 +22,10 @@ const PopupSelectedQuestion = () => {
       <PrimaryButton
         style={styles.button}
         title={Dictionary.startQuestions}
-        onPress={() => {}}
+        onPress={() => {
+          navigation.pop();
+          navigation.push(ScreensName.CheckingQuestions);
+        }}
       />
       <PrimaryButton
         style={styles.button}

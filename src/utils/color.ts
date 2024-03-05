@@ -1,5 +1,5 @@
 const Colors = {
-  PrimaryBlue75: '#5350D5BF',
+  PrimaryBlue75: '#7674E7',
   DarkPrimary: '#010F33',
   DarkPrimary75: '#010F33BF',
   VioletPrimary: '#6050AF',

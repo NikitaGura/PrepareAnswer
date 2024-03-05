@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {
+  CheckingQuestionsScreen,
   CreateQuestionsScreen,
   MainScreenQuestions,
   ModalSelectedQuestionsScreen,
@@ -35,12 +36,15 @@ const Navigation = () => {
             component={CreateQuestionsScreen}
             options={defaultStackOption}
           />
-        </RootStack.Group>
-        <RootStack.Group screenOptions={{presentation: 'transparentModal'}}>
           <RootStack.Screen
             name={ScreensName.Modal}
             component={ModalSelectedQuestionsScreen}
-            options={{header: () => null}}
+            options={{header: () => null, presentation: 'transparentModal'}}
+          />
+          <RootStack.Screen
+            name={ScreensName.CheckingQuestions}
+            component={CheckingQuestionsScreen}
+            options={defaultStackOption}
           />
         </RootStack.Group>
       </RootStack.Navigator>
