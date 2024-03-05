@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {
   ModalPopup,
   PlusButton,
@@ -6,30 +6,18 @@ import {
   ScreenWrapper,
 } from '../../components';
 import {Dictionary} from '../../utils';
-import ItemListQuestion from './ItemListQuestions';
-import {useCallback} from 'react';
 import PopupSelectedQuestion from './PopupSelectedQuestion';
 import {observer} from 'mobx-react-lite';
-import {useStore} from '../../stores';
-import {Questions} from '../../models';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
+import ListQuestions from './ListQuestions';
 
 const MainScreenQuestions = () => {
-  const {
-    questions: {list},
-  } = useStore();
-
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
 
-  const renderItem = useCallback(
-    ({item}: {item: Questions}) => <ItemListQuestion questions={item} />,
-    [],
-  );
-
-  const onPressPlusButton = useCallback(() => {
+  const onPressPlusButton = () => {
     navigation.push(ScreensName.CreateQuestions);
-  }, [navigation]);
+  };
 
   return (
     <ScreenWrapper>
@@ -37,12 +25,7 @@ const MainScreenQuestions = () => {
         <ScreenTitle title={Dictionary.titleMainScreenQuestions} />
         <PlusButton onPress={onPressPlusButton} />
       </View>
-      <FlatList
-        data={list}
-        style={styles.listItem}
-        renderItem={renderItem}
-        keyExtractor={({id}) => id.toString()}
-      />
+      <ListQuestions />
       <ModalPopup>
         <PopupSelectedQuestion />
       </ModalPopup>
@@ -54,10 +37,6 @@ const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-  },
-  listItem: {
-    marginTop: 20,
-    height: '100%',
   },
 });
 
