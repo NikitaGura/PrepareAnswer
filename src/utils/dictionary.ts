@@ -14,6 +14,12 @@ const Dictionary = {
   typeAnswer: 'Type answer..',
   back: 'Back',
   saveQuestions: 'Save questions',
+  question: 'Question',
+  showAnswer: 'Show answer',
+  rememberAnswer: 'Remember answer',
+  notRemember: 'Not remember',
+  goBackToList: 'Go back to list',
+  repeat: 'Repeat',
 };
 
 export default Dictionary;

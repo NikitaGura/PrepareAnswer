@@ -1,19 +1,21 @@
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {CheckingQuestionStore} from '../stores';
+import {RouteProp} from '@react-navigation/native';
 
 enum ScreensName {
   MainScreenQuestions = 'MainScreenQuestions',
   CreateQuestions = 'CreateQuestions',
   Modal = 'Modal',
-  CheckingQuestions = 'CheckingQuestions'
+  CheckingQuestions = 'CheckingQuestions',
 }
 
 type RootStackParamList = {
   MainScreenQuestions: undefined;
   CreateQuestions: undefined;
   Modal: undefined;
-  CheckingQuestions: undefined;
+  CheckingQuestions: {checkingQuestionStore: CheckingQuestionStore};
 };
-
+// for useNavigation
 type MainScreenQuestionsNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   ScreensName.MainScreenQuestions
@@ -34,6 +36,13 @@ type CheckingQuestionsNavigationProp = NativeStackNavigationProp<
   ScreensName.CheckingQuestions
 >;
 
+// for useRoute
+
+type CheckingQuestionsRouteProps = RouteProp<
+  RootStackParamList,
+  ScreensName.CheckingQuestions
+>;
+
 export {ScreensName};
 export type {
   RootStackParamList,
@@ -41,4 +50,5 @@ export type {
   MainScreenQuestionsNavigationProp,
   ModalNavigationProp,
   CheckingQuestionsNavigationProp,
+  CheckingQuestionsRouteProps,
 };

@@ -1,7 +1,7 @@
 import {StyleSheet, Text} from 'react-native';
 import {Popup, PrimaryButton} from '../../components';
 import {Colors, Dictionary} from '../../utils';
-import {useStore} from '../../stores';
+import {CheckingQuestionStore, useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
@@ -13,6 +13,14 @@ const PopupSelectedQuestion = () => {
 
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
 
+  const start = () => {
+    if (selectedListQuestions) {
+      navigation.push(ScreensName.CheckingQuestions, {
+        checkingQuestionStore: new CheckingQuestionStore(selectedListQuestions),
+      });
+    }
+  };
+
   return (
     <Popup>
       <Text
@@ -22,10 +30,7 @@ const PopupSelectedQuestion = () => {
       <PrimaryButton
         style={styles.button}
         title={Dictionary.startQuestions}
-        onPress={() => {
-          navigation.pop();
-          navigation.push(ScreensName.CheckingQuestions);
-        }}
+        onPress={start}
       />
       <PrimaryButton
         style={styles.button}

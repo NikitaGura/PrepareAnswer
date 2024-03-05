@@ -11,7 +11,7 @@ import {memo, useMemo} from 'react';
 
 type Props = {
   title: string;
-  onPress: () => void;
+  onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
