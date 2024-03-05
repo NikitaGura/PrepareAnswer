@@ -3,13 +3,16 @@ import {PrimaryTextInput, ScreenTitle, ScreenWrapper} from '../../components';
 import {Colors, Dictionary} from '../../utils';
 import {useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
+import {useEffect} from 'react';
 
 const CreateQuestionsScreen = () => {
   const {
-    createQuestions: {currentState, inputeStore},
+    createQuestions: {currentState, inputeStore, clearState},
   } = useStore();
 
   const BottomLayer = currentState.getBottomLayout();
+
+  useEffect(() => () => clearState(), [clearState]);
 
   return (
     <ScreenWrapper>
