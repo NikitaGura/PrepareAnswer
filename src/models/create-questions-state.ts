@@ -12,7 +12,7 @@ abstract class CreateQuestionsState {
 
   protected abstract topTitle: string;
   protected abstract placeholder: string;
-  protected abstract bottomLayout: (() => Element) & {displayName: string};
+  protected abstract bottomLayout: () => JSX.Element;
 
   public setContext(context: CreateQuestionsStore) {
     this.context = context;
