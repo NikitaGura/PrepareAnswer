@@ -4,7 +4,7 @@ import {
   BottomLayerName,
   BottomLayerQuestion,
 } from '../screens/CreateQuestionsScreen';
-import {CreateQuestionsStore} from '../stores';
+import {CreateQuestionsStore, rootStore} from '../stores';
 import {Dictionary} from '../utils';
 
 abstract class CreateQuestionsState {
@@ -148,10 +148,10 @@ class CreateQuestionsAnswer extends CreateQuestionsState {
 
     const questions = this.context.getQuestions();
     if (questions !== null) {
+      rootStore.questions.updateList(questions);
       RealmManager.createQuestions(questions);
     }
-
-    this.context.moveTo(new CreateQuestionsName());
+    this.context.clearState();
   };
 }
 

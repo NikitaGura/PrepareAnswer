@@ -8,4 +8,6 @@ class RootStore {
   createQuestions = new CreateQuestionsStore();
 }
 
-export default RootStore;
+const rootStore = new RootStore();
+
+export {RootStore, rootStore};

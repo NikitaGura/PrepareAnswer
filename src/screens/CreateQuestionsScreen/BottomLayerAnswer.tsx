@@ -3,11 +3,20 @@ import {PrimaryButton} from '../../components';
 import {Dictionary} from '../../utils';
 import {observer} from 'mobx-react-lite';
 import {useStore} from '../../stores';
+import {useNavigation} from '@react-navigation/native';
+import {CreateQuestionsNavigationProp} from '../../navigation';
 
 const BottomLayerAnswer = () => {
   const {
     createQuestions: {currentState, inputeStore},
   } = useStore();
+
+  const navigation = useNavigation<CreateQuestionsNavigationProp>();
+
+  const onSavePress = () => {
+    currentState.save();
+    navigation.pop();
+  };
 
   return (
     <View>
@@ -31,7 +40,7 @@ const BottomLayerAnswer = () => {
         styleText={styles.buttonText}
         title={Dictionary.saveQuestions}
         disabled={inputeStore.isValueEmpty}
-        onPress={() => currentState.save()}
+        onPress={onSavePress}
       />
     </View>
   );

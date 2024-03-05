@@ -14,6 +14,10 @@ class QuestionsStore {
   selectListQuestions = (questions: Questions) => {
     this.selectedListQuestions = questions;
   };
+
+  updateList = (questions: Questions) => {
+    this.list.push(questions);
+  };
 }
 
 export default QuestionsStore;

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Navigation} from './src/navigation';
-import {RootStore, RootStoreContext} from './src/stores';
+import {rootStore, RootStoreContext} from './src/stores';
 
 const App = () => {
   return (
-    <RootStoreContext.Provider value={new RootStore()}>
+    <RootStoreContext.Provider value={rootStore}>
       <Navigation />
     </RootStoreContext.Provider>
   );

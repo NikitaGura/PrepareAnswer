@@ -81,6 +81,13 @@ class CreateQuestionsStore {
   get currentState() {
     return this.state;
   }
+
+  clearState = () => {
+    this.state = new CreateQuestionsName();
+    this.questions = null;
+    this.selectedIndexQuestion = 0;
+    this.inputeStore = new InputStore();
+  };
 }
 
 export default CreateQuestionsStore;
