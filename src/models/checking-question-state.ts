@@ -29,6 +29,7 @@ abstract class CheckingQuestionsState {
 
 class CheckingQuestionsQuestion extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerQuestion;
+
   getTextContent = () => this.context?.currentQuestion.question || '';
 
   showAnswer = () => {
@@ -45,12 +46,10 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
   getTextContent = () => this.context?.currentQuestion.answer || '';
   showAnswer = () => {};
   remeberAnswer = () => {
-    this.context?.goNextQuestion();
     this.context?.increaseRememberedAnswer();
     this.decideNextState();
   };
   notRemeberAnswer = () => {
-    this.context?.goNextQuestion();
     this.decideNextState();
   };
 
@@ -59,10 +58,11 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
   decideNextState = () => {
     const isLastQuestion =
       this.context?.getQuestion().questions.length ===
-      this.context?.currentQuestionPosition;
+      (this.context?.currentQuestionPosition || 0) + 1;
     if (isLastQuestion) {
       this.context?.moveTo(new CheckingQuestionsFinish());
     } else {
+      this.context?.goNextQuestion();
       this.context?.moveTo(new CheckingQuestionsQuestion());
     }
   };

@@ -4,6 +4,7 @@ import {
   CheckingQuestionsState,
   Questions,
 } from '../models';
+import {Dictionary} from '../utils';
 
 class CheckingQuestionStore {
   private questions: Questions;
@@ -41,6 +42,12 @@ class CheckingQuestionStore {
 
   get currentState() {
     return this.state;
+  }
+
+  get titleScreenText() {
+    return `${Dictionary.question} ${this.currentQuestionPosition + 1}/${
+      this.questions.number
+    }`;
   }
 
   getQuestion = () => {

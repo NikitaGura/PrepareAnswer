@@ -1,6 +1,5 @@
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {PrimaryTextContent, ScreenTitle, ScreenWrapper} from '../../components';
-import {Dictionary} from '../../utils';
 import {observer} from 'mobx-react-lite';
 import {useRoute} from '@react-navigation/native';
 import {CheckingQuestionsRouteProps} from '../../navigation';
@@ -15,7 +14,7 @@ const CheckingQuestionsScreen = () => {
   return (
     <ScreenWrapper>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <ScreenTitle title={Dictionary.question} />
+        <ScreenTitle title={checkingQuestionStore.titleScreenText} />
         <View style={styles.textContent}>
           <PrimaryTextContent text={checkingQuestionStore.textContent} />
           <BottomLayer />
