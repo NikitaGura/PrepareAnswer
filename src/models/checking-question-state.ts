@@ -19,6 +19,8 @@ abstract class CheckingQuestionsState {
 
   abstract getTextContent: () => string;
 
+  abstract getResultAnswer: () => string;
+
   getBottomLayout = () => this.bottomLayout;
 
   abstract showAnswer: () => void;
@@ -34,6 +36,8 @@ class CheckingQuestionsQuestion extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerQuestion;
 
   getTextContent = () => this.context?.currentQuestion.question || '';
+
+  getResultAnswer = () => '';
 
   getTitleScreen = () =>
     `${Dictionary.question} ${
@@ -52,6 +56,8 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerAnswer;
 
   getTextContent = () => this.context?.currentQuestion.answer || '';
+
+  getResultAnswer = () => '';
 
   getTitleScreen = () =>
     `${Dictionary.question} ${
@@ -73,7 +79,7 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
 
   decideNextState = () => {
     const isLastQuestion =
-      this.context?.getQuestion().questions.length ===
+      this.context?.getQuestion().number ===
       (this.context?.currentQuestionPosition || 0) + 1;
     if (isLastQuestion) {
       this.context?.moveTo(new CheckingQuestionsFinish());
@@ -88,6 +94,11 @@ class CheckingQuestionsFinish extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerFinish;
   getTextContent = () =>
     `${Dictionary.completed} ${this.context?.getQuestion().title}`;
+
+  getResultAnswer = () =>
+    `${this.context?.countRememberedAnswer}/${
+      this.context?.getQuestion().number
+    }`;
 
   getTitleScreen = () => Dictionary.finished;
 

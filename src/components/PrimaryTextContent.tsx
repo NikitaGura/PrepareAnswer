@@ -1,15 +1,17 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../utils';
-import {memo} from 'react';
+import {ReactNode, memo} from 'react';
 
 type Props = {
   text: string;
+  children?: ReactNode;
 };
 
-const PrimaryTextContent = ({text}: Props) => {
+const PrimaryTextContent = ({text, children}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textInput}>{text}</Text>
+      {children}
     </View>
   );
 };

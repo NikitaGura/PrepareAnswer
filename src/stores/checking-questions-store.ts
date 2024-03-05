@@ -47,6 +47,10 @@ class CheckingQuestionStore {
     return this.state.getTitleScreen();
   }
 
+  get resultAnswer() {
+    return this.state.getResultAnswer();
+  }
+
   getQuestion = () => {
     return this.questions;
   };

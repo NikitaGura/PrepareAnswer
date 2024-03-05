@@ -1,8 +1,9 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {PrimaryTextContent, ScreenTitle, ScreenWrapper} from '../../components';
 import {observer} from 'mobx-react-lite';
 import {useRoute} from '@react-navigation/native';
 import {CheckingQuestionsRouteProps} from '../../navigation';
+import {Colors} from '../../utils';
 
 const CheckingQuestionsScreen = () => {
   const {
@@ -16,7 +17,13 @@ const CheckingQuestionsScreen = () => {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <ScreenTitle title={checkingQuestionStore.titleScreenText} />
         <View style={styles.textContent}>
-          <PrimaryTextContent text={checkingQuestionStore.textContent} />
+          <PrimaryTextContent text={checkingQuestionStore.textContent}>
+            <View style={styles.resultContainer}>
+              <Text style={styles.resultText}>
+                {checkingQuestionStore.resultAnswer}
+              </Text>
+            </View>
+          </PrimaryTextContent>
           <BottomLayer />
         </View>
       </ScrollView>
@@ -32,6 +39,16 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+  },
+  resultContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  resultText: {
+    fontSize: 40,
+    color: Colors.DarkPrimary,
+    fontFamily: 'Roboto Bold',
   },
 });
 
