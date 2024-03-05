@@ -1,12 +1,6 @@
 import {StyleSheet, View} from 'react-native';
-import {
-  ModalPopup,
-  PlusButton,
-  ScreenTitle,
-  ScreenWrapper,
-} from '../../components';
+import {PlusButton, ScreenTitle, ScreenWrapper} from '../../components';
 import {Dictionary} from '../../utils';
-import PopupSelectedQuestion from './PopupSelectedQuestion';
 import {observer} from 'mobx-react-lite';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
@@ -26,9 +20,6 @@ const MainScreenQuestions = () => {
         <PlusButton onPress={onPressPlusButton} />
       </View>
       <ListQuestions />
-      <ModalPopup>
-        <PopupSelectedQuestion />
-      </ModalPopup>
     </ScreenWrapper>
   );
 };

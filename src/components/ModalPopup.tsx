@@ -1,33 +1,28 @@
-import {ReactNode, useEffect} from 'react';
-import {Modal, Pressable, StyleSheet} from 'react-native';
-import {useStore} from '../stores';
-import {observer} from 'mobx-react-lite';
+import React, {ReactNode, memo} from 'react';
+import {View, Pressable, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   children: ReactNode;
 };
 
 const ModalPopup = ({children}: Props) => {
-  const {
-    modalPopup: {hide, visible},
-  } = useStore();
-
-  useEffect(() => () => hide(), [hide]);
+  const navigation = useNavigation();
 
   return (
-    <Modal
-      visible={visible}
-      onRequestClose={hide}
-      transparent
-      animationType="fade">
-      <Pressable style={styles.container} onPress={hide} />
+    <View style={styles.conainer}>
+      <Pressable style={styles.pressable} onPress={() => navigation.goBack()} />
       {children}
-    </Modal>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  conainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+  },
+  pressable: {
     backgroundColor: 'black',
     opacity: 0.5,
     height: '100%',
@@ -38,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(ModalPopup);
+export default memo(ModalPopup);

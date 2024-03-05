@@ -4,6 +4,8 @@ import {useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
 import {Questions} from '../../models';
 import {useCallback} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 type Props = {
   questions: Questions;
@@ -13,14 +15,15 @@ const ItemListQuestion = ({questions}: Props) => {
   const {number, title} = questions;
 
   const {
-    modalPopup: {show},
     questions: {selectListQuestions},
   } = useStore();
 
+  const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
+
   const onSelectQuetions = useCallback(() => {
     selectListQuestions(questions);
-    show();
-  }, [questions, selectListQuestions, show]);
+    navigation.navigate(ScreensName.Modal);
+  }, [navigation, questions, selectListQuestions]);
 
   return (
     <TouchableOpacity onPress={onSelectQuetions} style={styles.container}>
