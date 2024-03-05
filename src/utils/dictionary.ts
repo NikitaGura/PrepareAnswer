@@ -20,6 +20,8 @@ const Dictionary = {
   notRemember: 'Not remember',
   goBackToList: 'Go back to list',
   repeat: 'Repeat',
+  finished: 'Finished',
+  completed: 'Completed',
 };
 
 export default Dictionary;

@@ -4,6 +4,7 @@ import {
   BottomLayerQuestion,
 } from '../screens/CheckingQuestionsScreen';
 import {CheckingQuestionStore} from '../stores';
+import {Dictionary} from '../utils';
 
 abstract class CheckingQuestionsState {
   protected context: CheckingQuestionStore | null = null;
@@ -13,6 +14,8 @@ abstract class CheckingQuestionsState {
   public setContext(context: CheckingQuestionStore) {
     this.context = context;
   }
+
+  abstract getTitleScreen: () => string;
 
   abstract getTextContent: () => string;
 
@@ -32,6 +35,11 @@ class CheckingQuestionsQuestion extends CheckingQuestionsState {
 
   getTextContent = () => this.context?.currentQuestion.question || '';
 
+  getTitleScreen = () =>
+    `${Dictionary.question} ${
+      (this.context?.currentQuestionPosition || 0) + 1
+    }/${this.context?.getQuestion().number}`;
+
   showAnswer = () => {
     this.context?.moveTo(new CheckingQuestionsAnswer());
   };
@@ -44,11 +52,19 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerAnswer;
 
   getTextContent = () => this.context?.currentQuestion.answer || '';
+
+  getTitleScreen = () =>
+    `${Dictionary.question} ${
+      (this.context?.currentQuestionPosition || 0) + 1
+    }/${this.context?.getQuestion().number}`;
+
   showAnswer = () => {};
+
   remeberAnswer = () => {
     this.context?.increaseRememberedAnswer();
     this.decideNextState();
   };
+
   notRemeberAnswer = () => {
     this.decideNextState();
   };
@@ -70,10 +86,17 @@ class CheckingQuestionsAnswer extends CheckingQuestionsState {
 
 class CheckingQuestionsFinish extends CheckingQuestionsState {
   protected bottomLayout = BottomLayerFinish;
-  getTextContent = () => '';
+  getTextContent = () =>
+    `${Dictionary.completed} ${this.context?.getQuestion().title}`;
+
+  getTitleScreen = () => Dictionary.finished;
+
   showAnswer = () => {};
+
   remeberAnswer = () => {};
+
   notRemeberAnswer = () => {};
+
   repeat = () => {
     this.context?.clearState();
     this.context?.moveTo(new CheckingQuestionsQuestion());
