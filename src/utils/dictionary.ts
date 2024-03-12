@@ -2,7 +2,7 @@ const Dictionary = {
   titleMainScreenQuestions: 'List Questions',
   selected: 'Selected',
   startQuestions: 'Start Questions',
-  editeQuestions: 'Edite Questions',
+  editQuestions: 'Edit Questions',
   deleteQuestions: 'Delete Questions',
   createQuestions: 'Create Questions',
   pleaseWriteNameOfQuestions: 'Please write name of questions',
@@ -22,6 +22,7 @@ const Dictionary = {
   repeat: 'Repeat',
   finished: 'Finished',
   completed: 'Completed',
+  questions: 'Questions',
 };
 
 export default Dictionary;

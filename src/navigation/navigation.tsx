@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {
   CheckingQuestionsScreen,
   CreateQuestionsScreen,
+  EditQuestionsScreen,
   MainScreenQuestions,
   ModalSelectedQuestionsScreen,
 } from '../screens';
@@ -44,6 +45,11 @@ const Navigation = () => {
           <RootStack.Screen
             name={ScreensName.CheckingQuestions}
             component={CheckingQuestionsScreen}
+            options={defaultStackOption}
+          />
+          <RootStack.Screen
+            name={ScreensName.EditQuestions}
+            component={EditQuestionsScreen}
             options={defaultStackOption}
           />
         </RootStack.Group>

@@ -20,13 +20,13 @@ const ItemListQuestion = ({questions}: Props) => {
 
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
 
-  const onSelectQuetions = useCallback(() => {
+  const onSelectQuestions = useCallback(() => {
     selectListQuestions(questions);
     navigation.push(ScreensName.Modal);
   }, [navigation, questions, selectListQuestions]);
 
   return (
-    <TouchableOpacity onPress={onSelectQuetions} style={styles.container}>
+    <TouchableOpacity onPress={onSelectQuestions} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.circle}>
         <Text style={styles.number}>{number}</Text>
