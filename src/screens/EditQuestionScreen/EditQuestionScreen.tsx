@@ -16,7 +16,8 @@ const EditQuestionScreen = () => {
   const {
     params: {editQuestionStore},
   } = useRoute<EditQuestionRouteProps>();
-  const {question, updateAnswer, updateQuestion} = editQuestionStore;
+  const {question, updateAnswer, updateQuestion, saveChanges} =
+    editQuestionStore;
 
   return (
     <KeyboardAvoidingView
@@ -43,7 +44,10 @@ const EditQuestionScreen = () => {
           updateValue={updateAnswer}
         />
         <View style={styles.bottomContent}>
-          <PrimaryButton onPress={() => {}} title={Dictionary.saveQuestion} />
+          <PrimaryButton
+            onPress={saveChanges}
+            title={Dictionary.saveQuestion}
+          />
           <View style={styles.space} />
           <View style={styles.space} />
           <PrimaryButton onPress={() => {}} title={Dictionary.deleteQuestion} />

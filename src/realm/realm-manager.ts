@@ -1,15 +1,15 @@
 import {QuestionRealm, QuestionsRealm} from './schems';
-import {Questions} from '../models';
-import Realm from 'realm';
+import {Question, Questions} from '../models';
+import Realm, {UpdateMode} from 'realm';
 
 class RealmManager {
   private realm: Realm;
 
   public constructor() {
-    this.realm = new Realm({schema: this.getSchems(), schemaVersion: 3});
+    this.realm = new Realm({schema: this.getSchemes(), schemaVersion: 3});
   }
 
-  getSchems() {
+  getSchemes() {
     return [QuestionRealm, QuestionsRealm];
   }
 
@@ -30,6 +30,12 @@ class RealmManager {
     }
 
     return result;
+  }
+
+  updateQuestion(question: Question) {
+    this.realm.write(() => {
+      this.realm.create(QuestionRealm, question, UpdateMode.Modified);
+    });
   }
 }
 
