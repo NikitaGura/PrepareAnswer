@@ -23,6 +23,9 @@ const Dictionary = {
   finished: 'Finished',
   completed: 'Completed',
   questions: 'Questions',
+  editQuestion: 'Edit Question',
+  deleteQuestion: 'Delete Question',
+  saveQuestion: 'Save Question',
 };
 
 export default Dictionary;

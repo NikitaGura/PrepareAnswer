@@ -14,9 +14,15 @@ type Props = {
   placeholder: string;
   value: string;
   updateValue: (value: string) => void;
+  minHeight?: number;
 };
 
-const PrimaryTextInput = ({placeholder, value, updateValue}: Props) => {
+const PrimaryTextInput = ({
+  placeholder,
+  value,
+  updateValue,
+  minHeight = 250,
+}: Props) => {
   const [height, setHeight] = useState(0);
 
   const onContentSizeChange = useCallback(
@@ -26,13 +32,17 @@ const PrimaryTextInput = ({placeholder, value, updateValue}: Props) => {
   );
 
   const containerStyle = useMemo(
-    () => [styles.container, {height: height + paddingContainer * 2}],
-    [height],
+    () => [
+      styles.container,
+      {height: height + paddingContainer * 2, minHeight: minHeight},
+    ],
+    [height, minHeight],
   );
 
   return (
     <View style={containerStyle}>
       <TextInput
+        scrollEnabled={false}
         placeholder={placeholder}
         placeholderTextColor={Colors.DarkPrimary25}
         style={styles.textInput}
@@ -48,7 +58,6 @@ const PrimaryTextInput = ({placeholder, value, updateValue}: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 250,
     width: '100%',
     backgroundColor: Colors.LightBluePrimary25,
     borderRadius: 20,
@@ -56,6 +65,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 24,
+    lineHeight: 30,
     fontFamily: 'Roboto Regular',
     color: Colors.DarkPrimary,
     flex: 1,
