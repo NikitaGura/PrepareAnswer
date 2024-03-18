@@ -3,6 +3,7 @@ import React, {useCallback} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {Questions, useStore} from '../../stores';
 import ItemListQuestions from './ItemListQuestions';
+import {sharedValues} from '../../utils';
 
 const ListQuestions = () => {
   const {
@@ -19,6 +20,7 @@ const ListQuestions = () => {
     <FlatList
       data={list}
       style={styles.listItem}
+      contentContainerStyle={styles.contentContainerStyle}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
     />
@@ -33,6 +35,9 @@ const styles = StyleSheet.create({
   listItem: {
     marginTop: 20,
     height: '100%',
+  },
+  contentContainerStyle: {
+    paddingHorizontal: sharedValues.paddingHorizontalScreen,
   },
 });
 

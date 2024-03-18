@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import {PlusButton, ScreenTitle, ScreenWrapper} from '../../components';
-import {Dictionary} from '../../utils';
+import {Dictionary, sharedValues} from '../../utils';
 import {observer} from 'mobx-react-lite';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingHorizontal: sharedValues.paddingHorizontalScreen,
   },
 });
 

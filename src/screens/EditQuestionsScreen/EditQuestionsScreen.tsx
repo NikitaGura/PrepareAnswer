@@ -1,7 +1,7 @@
 import {View, StyleSheet} from 'react-native';
 import React from 'react';
 import {PlusButton, ScreenTitle, ScreenWrapper} from '../../components';
-import {Dictionary} from '../../utils';
+import {Dictionary, sharedValues} from '../../utils';
 import Questions from './Questions';
 import {useNavigation} from '@react-navigation/native';
 import {EditQuestionsNavigationProp, ScreensName} from '../../navigation';
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingHorizontal: sharedValues.paddingHorizontalScreen,
   },
 });
 

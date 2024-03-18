@@ -6,7 +6,7 @@ import {useStore} from '../../stores';
 
 const BottomLayerName = () => {
   const {
-    createQuestions: {currentState, inputeStore},
+    createQuestions: {currentState, inputStore: inputStore},
   } = useStore();
 
   return (
@@ -14,7 +14,7 @@ const BottomLayerName = () => {
       style={styles.nextButton}
       styleText={styles.nextButtonText}
       title={Dictionary.next}
-      disabled={inputeStore.isValueEmpty}
+      disabled={inputStore.isValueEmpty}
       onPress={() => currentState.moveNext()}
     />
   );

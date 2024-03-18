@@ -8,7 +8,7 @@ import {CreateQuestionsNavigationProp} from '../../navigation';
 
 const BottomLayerAnswer = () => {
   const {
-    createQuestions: {currentState, inputeStore},
+    createQuestions: {currentState, inputStore: inputStore},
   } = useStore();
 
   const navigation = useNavigation<CreateQuestionsNavigationProp>();
@@ -31,7 +31,7 @@ const BottomLayerAnswer = () => {
           style={styles.button}
           styleText={styles.buttonText}
           title={Dictionary.next}
-          disabled={inputeStore.isValueEmpty}
+          disabled={inputStore.isValueEmpty}
           onPress={() => currentState.moveNext()}
         />
       </View>
@@ -39,7 +39,7 @@ const BottomLayerAnswer = () => {
         style={styles.saveButton}
         styleText={styles.buttonText}
         title={Dictionary.saveQuestions}
-        disabled={inputeStore.isValueEmpty}
+        disabled={inputStore.isValueEmpty}
         onPress={onSavePress}
       />
     </View>

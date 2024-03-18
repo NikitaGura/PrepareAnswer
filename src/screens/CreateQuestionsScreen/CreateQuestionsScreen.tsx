@@ -1,13 +1,13 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {PrimaryTextInput, ScreenTitle, ScreenWrapper} from '../../components';
-import {Colors, Dictionary} from '../../utils';
+import {Colors, Dictionary, sharedValues} from '../../utils';
 import {useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
 import {useEffect} from 'react';
 
 const CreateQuestionsScreen = () => {
   const {
-    createQuestions: {currentState, inputeStore, clearState},
+    createQuestions: {currentState, inputStore: inputStore, clearState},
   } = useStore();
 
   const BottomLayer = currentState.getBottomLayout();
@@ -16,14 +16,14 @@ const CreateQuestionsScreen = () => {
 
   return (
     <ScreenWrapper>
-      <ScrollView>
+      <ScrollView style={styles.containerStyleScroll}>
         <ScreenTitle title={Dictionary.createQuestions} />
         <View style={styles.container}>
           <Text style={styles.topText}>{currentState.getTopTitle()}</Text>
           <PrimaryTextInput
             placeholder={currentState.getPlaceholder()}
-            value={inputeStore.value}
-            updateValue={inputeStore.updateValue}
+            value={inputStore.value}
+            updateValue={inputStore.updateValue}
           />
           <BottomLayer />
         </View>
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     color: Colors.DarkPrimary,
     textAlign: 'center',
     marginVertical: 25,
+  },
+  containerStyleScroll: {
+    paddingHorizontal: sharedValues.paddingHorizontalScreen,
   },
 });
 

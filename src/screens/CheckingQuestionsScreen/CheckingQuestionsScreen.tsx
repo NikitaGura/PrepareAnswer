@@ -1,7 +1,7 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {PrimaryTextContent, ScreenTitle, ScreenWrapper} from '../../components';
 import {observer} from 'mobx-react-lite';
-import {Colors} from '../../utils';
+import {Colors, sharedValues} from '../../utils';
 import {useStore} from '../../stores';
 import {useEffect} from 'react';
 
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    paddingHorizontal: sharedValues.paddingHorizontalScreen,
   },
   resultContainer: {
     flexDirection: 'row',
