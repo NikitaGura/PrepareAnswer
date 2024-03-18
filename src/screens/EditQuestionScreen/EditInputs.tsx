@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import {useStore} from '../../stores';
 import {PrimaryTextInput} from '../../components';
 import {observer} from 'mobx-react-lite';
-import BottomButtons from './BottomButtons';
 
 const EditInputs = () => {
   const {questions} = useStore();
@@ -33,7 +32,6 @@ const EditInputs = () => {
         value={question.answerField?.state.value}
         updateValue={question.answerField?.actions.onChange}
       />
-      <BottomButtons />
     </View>
   );
 };

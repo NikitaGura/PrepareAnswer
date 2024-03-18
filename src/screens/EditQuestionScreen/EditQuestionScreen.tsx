@@ -8,17 +8,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
-import {useStore} from '../../stores';
 import EditInputs from './EditInputs';
+import BottomButtons from './BottomButtons';
 
 const EditQuestionScreen = () => {
-  const {questions} = useStore();
-  const question = questions.currentSelectedQuestions?.currentQuestion;
-
-  if (!question) {
-    return null;
-  }
-
   return (
     <KeyboardAvoidingView
       style={styles.flex}
@@ -30,6 +23,7 @@ const EditQuestionScreen = () => {
         showsVerticalScrollIndicator={false}>
         <ScreenTitle title={Dictionary.editQuestion} />
         <EditInputs />
+        <BottomButtons />
       </ScrollView>
     </KeyboardAvoidingView>
   );

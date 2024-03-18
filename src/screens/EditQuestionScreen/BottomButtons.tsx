@@ -4,10 +4,18 @@ import {observer} from 'mobx-react-lite';
 import {PrimaryButton} from '../../components';
 import {useStore} from '../../stores';
 import {Dictionary} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
+import {EditQuestionNavigationProp} from '../../navigation';
 
 const BottomButtons = () => {
   const {questions} = useStore();
   const question = questions.currentSelectedQuestions?.currentQuestion;
+  const navigation = useNavigation<EditQuestionNavigationProp>();
+
+  const deleteQuestion = () => {
+    navigation.pop();
+    questions?.currentSelectedQuestions?.deleteCurrentQuestion();
+  };
 
   if (!question) {
     return null;
@@ -21,7 +29,10 @@ const BottomButtons = () => {
       />
       <View style={styles.space} />
       <View style={styles.space} />
-      <PrimaryButton onPress={() => {}} title={Dictionary.deleteQuestion} />
+      <PrimaryButton
+        onPress={deleteQuestion}
+        title={Dictionary.deleteQuestion}
+      />
     </View>
   );
 };

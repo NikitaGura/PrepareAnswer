@@ -72,6 +72,16 @@ export class Questions implements IQuestions {
     return this.questions.find(({id}) => id === this.selectedQuestion?.id);
   }
 
+  deleteCurrentQuestion = () => {
+    if (!this.currentQuestion) {
+      return;
+    }
+    RealmManager.deleteQuestion(this.currentQuestion);
+    this.questions = this.questions.filter(
+      ({id}) => this.currentQuestion?.id !== id,
+    );
+  };
+
   static mapFromRealm = (data: any) => {
     const result = new Questions(data.title || '');
     result.id = data.id || (uuid.v4() as string);
