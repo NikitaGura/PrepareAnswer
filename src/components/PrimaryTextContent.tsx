@@ -1,6 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle, View} from 'react-native';
 import {Colors} from '../utils';
-import {ReactNode, memo} from 'react';
+import {ReactNode, memo, useMemo} from 'react';
+import TypeWriter from 'react-native-typewriter';
 
 type Props = {
   text: string;
@@ -8,9 +9,16 @@ type Props = {
 };
 
 const PrimaryTextContent = ({text, children}: Props) => {
+  const textStyle = useMemo<StyleProp<TextStyle>>(
+    () => [styles.textInput, {textAlign: children ? 'center' : 'left'}],
+    [children],
+  );
+
   return (
     <View style={styles.container}>
-      <Text style={styles.textInput}>{text}</Text>
+      <TypeWriter initialDelay={180} typing={1} style={textStyle}>
+        {text}
+      </TypeWriter>
       {children}
     </View>
   );
@@ -19,10 +27,10 @@ const PrimaryTextContent = ({text, children}: Props) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    minHeight: 100,
+    minHeight: 80,
     backgroundColor: Colors.LightBluePrimary25,
     borderRadius: 20,
-    padding: 10,
+    padding: 20,
     justifyContent: 'center',
   },
   textInput: {
@@ -30,7 +38,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto Regular',
     color: Colors.DarkPrimary,
     textAlignVertical: 'top',
-    textAlign: 'center',
   },
 });
 

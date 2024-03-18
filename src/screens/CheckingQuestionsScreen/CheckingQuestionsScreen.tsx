@@ -22,11 +22,13 @@ const CheckingQuestionsScreen = () => {
         <ScreenTitle title={checkingQuestionStore.titleScreenText} />
         <View style={styles.textContent}>
           <PrimaryTextContent text={checkingQuestionStore.textContent}>
-            <View style={styles.resultContainer}>
-              <Text style={styles.resultText}>
-                {checkingQuestionStore.resultAnswer}
-              </Text>
-            </View>
+            {checkingQuestionStore.resultAnswer && (
+              <View style={styles.resultContainer}>
+                <Text style={styles.resultText}>
+                  {checkingQuestionStore.resultAnswer}
+                </Text>
+              </View>
+            )}
           </PrimaryTextContent>
           <BottomLayer />
         </View>
