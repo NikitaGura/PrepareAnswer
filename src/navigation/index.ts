@@ -10,6 +10,8 @@ import {
   EditQuestionsRouteProps,
   EditQuestionNavigationProp,
   EditQuestionRouteProps,
+  CreateQuestionNavigationProp,
+  CreateQuestionRouteProps,
 } from './navigation.type';
 
 export {Navigation, ScreensName};
@@ -23,4 +25,6 @@ export type {
   EditQuestionsRouteProps,
   EditQuestionNavigationProp,
   EditQuestionRouteProps,
+  CreateQuestionNavigationProp,
+  CreateQuestionRouteProps,
 };

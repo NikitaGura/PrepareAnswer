@@ -12,6 +12,7 @@ import {
 } from '../screens';
 import {Colors} from '../utils';
 import {RootStackParamList, ScreensName} from './navigation.type';
+import {CreateQuestionScreen} from '../screens/CreateQuestionScreen';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -56,6 +57,11 @@ const Navigation = () => {
           <RootStack.Screen
             name={ScreensName.EditQuestion}
             component={EditQuestionScreen}
+            options={defaultStackOption}
+          />
+          <RootStack.Screen
+            name={ScreensName.CreateQuestion}
+            component={CreateQuestionScreen}
             options={defaultStackOption}
           />
         </RootStack.Group>

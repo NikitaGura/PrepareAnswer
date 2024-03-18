@@ -38,14 +38,6 @@ const BottomButtons = () => {
 };
 
 const styles = StyleSheet.create({
-  flex: {
-    flex: 1,
-  },
-  containerScroll: {
-    flexGrow: 1,
-    padding: 10,
-    paddingTop: 15,
-  },
   space: {
     height: 10,
   },

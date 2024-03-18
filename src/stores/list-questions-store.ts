@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import {RealmManager} from '../realm';
 
 import uuid from 'react-native-uuid';
@@ -80,6 +80,17 @@ export class Questions implements IQuestions {
     this.questions = this.questions.filter(
       ({id}) => this.currentQuestion?.id !== id,
     );
+  };
+
+  addQuestion = (question: Question) => {
+    if (!this.questions) {
+      return;
+    }
+    runInAction(() => {
+      this.questions.push(question);
+    });
+
+    RealmManager.updateQuestions(this);
   };
 
   static mapFromRealm = (data: any) => {

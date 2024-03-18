@@ -47,7 +47,7 @@ class CreateQuestionsQuestion extends CreateQuestionsState {
       this.context.createQuestion();
     }
 
-    this.context.inputeStore.updateValue(
+    this.context.inputStore.updateValue(
       this.context.selectedQuestion?.answer || '',
     );
 
@@ -64,12 +64,12 @@ class CreateQuestionsQuestion extends CreateQuestionsState {
 
     if (this.context.getSelectedIndexQuestion() > 0) {
       this.context.backIndexQuestion();
-      this.context.inputeStore.updateValue(
+      this.context.inputStore.updateValue(
         this.context.selectedQuestion?.answer || '',
       );
       this.context.moveTo(new CreateQuestionsAnswer());
     } else {
-      this.context.inputeStore.updateValue(
+      this.context.inputStore.updateValue(
         this.context.getQuestions()?.title || '',
       );
       this.context.moveTo(new CreateQuestionsName());
@@ -94,7 +94,7 @@ class CreateQuestionsName extends CreateQuestionsState {
       this.context.updateQuestions();
     }
 
-    this.context.inputeStore.updateValue(
+    this.context.inputStore.updateValue(
       this.context.selectedQuestion?.question || '',
     );
 
@@ -118,7 +118,7 @@ class CreateQuestionsAnswer extends CreateQuestionsState {
       this.context.updateAnswer();
     }
 
-    this.context.inputeStore.updateValue(
+    this.context.inputStore.updateValue(
       this.context.selectedQuestion?.question || '',
     );
 
@@ -135,7 +135,7 @@ class CreateQuestionsAnswer extends CreateQuestionsState {
 
     this.context.nextIndexQuestion();
 
-    this.context.inputeStore.updateValue(
+    this.context.inputStore.updateValue(
       this.context.selectedQuestion?.question || '',
     );
 

@@ -7,7 +7,7 @@ class CreateQuestionsStore {
   private state: CreateQuestionsState = new CreateQuestionsName();
   private questions: Questions | null = null;
   private selectedIndexQuestion: number = 0;
-  public inputeStore: InputStore = new InputStore();
+  public inputStore: InputStore = new InputStore();
 
   constructor() {
     makeAutoObservable(this);
@@ -20,7 +20,7 @@ class CreateQuestionsStore {
   }
 
   public createQuestions() {
-    this.questions = new Questions(this.inputeStore.value);
+    this.questions = new Questions(this.inputStore.value);
   }
 
   public updateQuestions = () => {
@@ -28,14 +28,14 @@ class CreateQuestionsStore {
       throw new Error('questions is null');
     }
 
-    this.questions.title = this.inputeStore.value;
+    this.questions.title = this.inputStore.value;
   };
 
   public createQuestion = () => {
     if (this.questions === null) {
       throw new Error('questions is null');
     }
-    this.questions.questions.push(new Question(this.inputeStore.value));
+    this.questions.questions.push(new Question(this.inputStore.value));
   };
 
   public updateQuestion = () => {
@@ -43,7 +43,7 @@ class CreateQuestionsStore {
       throw new Error('questions is null');
     }
     this.questions.questions[this.selectedIndexQuestion].question =
-      this.inputeStore.value;
+      this.inputStore.value;
   };
 
   public updateAnswer = () => {
@@ -51,7 +51,7 @@ class CreateQuestionsStore {
       throw new Error('questions is null');
     }
     this.questions.questions[this.selectedIndexQuestion].answer =
-      this.inputeStore.value;
+      this.inputStore.value;
   };
 
   public getQuestions = () => {
@@ -82,7 +82,7 @@ class CreateQuestionsStore {
     this.state = new CreateQuestionsName();
     this.questions = null;
     this.selectedIndexQuestion = 0;
-    this.inputeStore = new InputStore();
+    this.inputStore = new InputStore();
   };
 }
 

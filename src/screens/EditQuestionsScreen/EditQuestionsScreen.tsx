@@ -3,13 +3,24 @@ import React from 'react';
 import {PlusButton, ScreenTitle, ScreenWrapper} from '../../components';
 import {Dictionary} from '../../utils';
 import Questions from './Questions';
+import {useNavigation} from '@react-navigation/native';
+import {EditQuestionsNavigationProp, ScreensName} from '../../navigation';
+import {AddQuestionStore} from '../../stores';
 
 const EditQuestionsScreen = () => {
+  const navigation = useNavigation<EditQuestionsNavigationProp>();
+
+  const navigateToAddQuestionScreen = () => {
+    navigation.push(ScreensName.CreateQuestion, {
+      addQuestionStore: new AddQuestionStore(),
+    });
+  };
+
   return (
     <ScreenWrapper>
       <View style={styles.headerContainer}>
         <ScreenTitle title={Dictionary.questions} />
-        <PlusButton onPress={() => {}} />
+        <PlusButton onPress={navigateToAddQuestionScreen} />
       </View>
       <Questions />
     </ScreenWrapper>

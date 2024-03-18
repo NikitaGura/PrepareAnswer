@@ -1,5 +1,5 @@
 import CheckingQuestionStore from './checking-questions-store';
-import CreateQuestionsStore from './create-question-store';
+import CreateQuestionsStore from './create-questions-store';
 import QuestionsStore from './list-questions-store';
 
 class RootStore {

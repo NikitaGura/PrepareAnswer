@@ -38,6 +38,12 @@ class RealmManager {
     });
   }
 
+  updateQuestions(questions: Questions) {
+    this.realm.write(() => {
+      this.realm.create(QuestionsRealm, questions, UpdateMode.Modified);
+    });
+  }
+
   deleteQuestion(question: Question) {
     const questionRealm = this.realm.objectForPrimaryKey(
       'QuestionRealm',
