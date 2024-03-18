@@ -1,11 +1,7 @@
 import {makeAutoObservable} from 'mobx';
-import {
-  CreateQuestionsName,
-  CreateQuestionsState,
-  Question,
-  Questions,
-} from '../models';
+import {CreateQuestionsName, CreateQuestionsState} from '../models';
 import InputStore from './input-store';
+import {Question, Questions} from './list-questions-store';
 
 class CreateQuestionsStore {
   private state: CreateQuestionsState = new CreateQuestionsName();

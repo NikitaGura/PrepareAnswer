@@ -8,7 +8,7 @@ import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 const PopupSelectedQuestion = () => {
   const {
-    questions: {currentSelectedQuestion},
+    questions: {currentSelectedQuestions},
   } = useStore();
 
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
@@ -26,7 +26,7 @@ const PopupSelectedQuestion = () => {
       <Text
         style={
           styles.textSelected
-        }>{`${Dictionary.selected} ${currentSelectedQuestion?.title}`}</Text>
+        }>{`${Dictionary.selected} ${currentSelectedQuestions?.title}`}</Text>
       <PrimaryButton
         style={styles.button}
         title={Dictionary.startQuestions}

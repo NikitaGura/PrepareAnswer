@@ -1,23 +1,23 @@
 import React from 'react';
-import {ScreenTitle, PrimaryTextInput, PrimaryButton} from '../../components';
+import {ScreenTitle} from '../../components';
 import {Dictionary} from '../../utils';
-import {useRoute} from '@react-navigation/native';
-import {EditQuestionRouteProps} from '../../navigation';
 import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
-  View,
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
+import {useStore} from '../../stores';
+import EditInputs from './EditInputs';
 
 const EditQuestionScreen = () => {
-  const {
-    params: {editQuestionStore},
-  } = useRoute<EditQuestionRouteProps>();
-  const {question, updateAnswer, updateQuestion, saveChanges} =
-    editQuestionStore;
+  const {questions} = useStore();
+  const question = questions.currentSelectedQuestions?.currentQuestion;
+
+  if (!question) {
+    return null;
+  }
 
   return (
     <KeyboardAvoidingView
@@ -29,29 +29,7 @@ const EditQuestionScreen = () => {
         contentContainerStyle={styles.containerScroll}
         showsVerticalScrollIndicator={false}>
         <ScreenTitle title={Dictionary.editQuestion} />
-        <View style={styles.space} />
-        <PrimaryTextInput
-          minHeight={80}
-          placeholder={''}
-          value={question.question}
-          updateValue={updateQuestion}
-        />
-        <View style={styles.space} />
-        <PrimaryTextInput
-          minHeight={80}
-          placeholder={''}
-          value={question.answer}
-          updateValue={updateAnswer}
-        />
-        <View style={styles.bottomContent}>
-          <PrimaryButton
-            onPress={saveChanges}
-            title={Dictionary.saveQuestion}
-          />
-          <View style={styles.space} />
-          <View style={styles.space} />
-          <PrimaryButton onPress={() => {}} title={Dictionary.deleteQuestion} />
-        </View>
+        <EditInputs />
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -65,16 +43,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 10,
     paddingTop: 15,
-  },
-  space: {
-    height: 10,
-  },
-  bottomContent: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 40,
-    minHeight: 200,
-    paddingHorizontal: '20%',
   },
 });
 

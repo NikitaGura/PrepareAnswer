@@ -9,10 +9,10 @@ const CheckingQuestionsScreen = () => {
   const {questions, checkingQuestionStore} = useStore();
 
   useEffect(() => {
-    if (questions.currentSelectedQuestion) {
-      checkingQuestionStore.updateQuestions(questions.currentSelectedQuestion);
+    if (questions.currentSelectedQuestions) {
+      checkingQuestionStore.updateQuestions(questions.currentSelectedQuestions);
     }
-  }, [checkingQuestionStore, questions.currentSelectedQuestion]);
+  }, [checkingQuestionStore, questions.currentSelectedQuestions]);
 
   const BottomLayer = checkingQuestionStore.currentState.getBottomLayout();
 

@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
-import {Question} from '../models';
 import {RealmManager} from '../realm';
+import {Question} from './list-questions-store';
 
 class EditQuestionStore {
   question: Question;

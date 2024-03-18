@@ -2,17 +2,43 @@ import {makeAutoObservable} from 'mobx';
 import {RealmManager} from '../realm';
 
 import uuid from 'react-native-uuid';
+import {IQuestion, IQuestions} from '../models';
+import {Field, Form, createField, createForm} from 'mobx-easy-form';
 
-export class Question {
+export class Question implements IQuestion {
   id: string;
   question: string = '';
   answer: string = '';
+
+  form: Form | null = null;
+  questionField: Field<string> | null = null;
+  answerField: Field<string> | null = null;
 
   constructor(question: string) {
     this.question = question;
     this.id = uuid.v4() as string;
     makeAutoObservable(this);
   }
+
+  setupFields = () => {
+    this.form = createForm({onSubmit: this.saveChanges});
+    this.questionField = createField({
+      id: 'question',
+      initialValue: this.question,
+      form: this.form,
+    });
+    this.answerField = createField({
+      id: 'answer',
+      initialValue: this.answer,
+      form: this.form,
+    });
+  };
+
+  saveChanges = ({values}: {values: any}) => {
+    this.question = values.question;
+    this.answer = values.answer;
+    RealmManager.updateQuestion(this);
+  };
 
   static mapFromRealm = (data: any) => {
     const result = new Question(data.question || '');
@@ -22,8 +48,9 @@ export class Question {
   };
 }
 
-export class Questions {
+export class Questions implements IQuestions {
   questions: Question[] = [];
+  private selectedQuestion: Question | null = null;
   title: string;
   id: string;
 
@@ -33,8 +60,16 @@ export class Questions {
     makeAutoObservable(this);
   }
 
+  selectQuestion = (question: Question) => {
+    this.selectedQuestion = question;
+  };
+
   get number() {
     return this.questions.length;
+  }
+
+  get currentQuestion() {
+    return this.questions.find(({id}) => id === this.selectedQuestion?.id);
   }
 
   static mapFromRealm = (data: any) => {
@@ -65,7 +100,7 @@ class QuestionsStore {
     this.list.push(questions);
   };
 
-  get currentSelectedQuestion() {
+  get currentSelectedQuestions() {
     return this.list.find(({id}) => id === this.selectedQuestions?.id);
   }
 }

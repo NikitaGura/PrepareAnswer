@@ -6,13 +6,13 @@ import {
   CreateQuestionsState,
   CreateQuestionsName,
 } from './create-questions-state';
-import {Questions, Question} from './question';
+import {IQuestions, IQuestion} from './question';
 
 export {
-  Questions,
-  Question,
   CreateQuestionsState,
   CreateQuestionsName,
   CheckingQuestionsState,
   CheckingQuestionsQuestion,
 };
+
+export type {IQuestions, IQuestion};

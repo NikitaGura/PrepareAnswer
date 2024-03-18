@@ -1,9 +1,6 @@
 import {makeAutoObservable} from 'mobx';
-import {
-  CheckingQuestionsQuestion,
-  CheckingQuestionsState,
-  Questions,
-} from '../models';
+import {CheckingQuestionsQuestion, CheckingQuestionsState} from '../models';
+import {Questions} from './list-questions-store';
 
 class CheckingQuestionStore {
   private questions: Questions | null = null;

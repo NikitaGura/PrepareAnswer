@@ -1,9 +1,8 @@
 import {FlatList, StyleSheet} from 'react-native';
 import React, {useCallback} from 'react';
 import {observer} from 'mobx-react-lite';
-import {Question} from '../../models';
 import QuestionItem from './QuestionItem';
-import {useStore} from '../../stores';
+import {Question, useStore} from '../../stores';
 
 const Questions = () => {
   const {questions} = useStore();
@@ -19,7 +18,7 @@ const Questions = () => {
       style={styles.list}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      data={questions.currentSelectedQuestion?.questions}
+      data={questions.currentSelectedQuestions?.questions}
     />
   );
 };

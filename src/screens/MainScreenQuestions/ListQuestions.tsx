@@ -1,8 +1,7 @@
 import {observer} from 'mobx-react-lite';
 import React, {useCallback} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
-import {Questions} from '../../models';
-import {useStore} from '../../stores';
+import {Questions, useStore} from '../../stores';
 import ItemListQuestions from './ItemListQuestions';
 
 const ListQuestions = () => {

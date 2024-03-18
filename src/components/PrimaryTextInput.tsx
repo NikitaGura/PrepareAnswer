@@ -12,8 +12,8 @@ const paddingContainer = 20;
 
 type Props = {
   placeholder: string;
-  value: string;
-  updateValue: (value: string) => void;
+  value?: string;
+  updateValue?: (value: string) => void;
   minHeight?: number;
 };
 

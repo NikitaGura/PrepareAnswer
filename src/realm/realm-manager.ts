@@ -1,5 +1,5 @@
+import {Question, Questions} from '../stores/list-questions-store';
 import {QuestionRealm, QuestionsRealm} from './schems';
-import {Question, Questions} from '../models';
 import Realm, {UpdateMode} from 'realm';
 
 class RealmManager {

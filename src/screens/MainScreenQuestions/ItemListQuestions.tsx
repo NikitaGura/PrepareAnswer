@@ -1,8 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../../utils';
-import {useStore} from '../../stores';
+import {Questions, useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
-import {Questions} from '../../models';
 import {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
