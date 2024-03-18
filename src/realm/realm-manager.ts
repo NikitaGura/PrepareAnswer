@@ -47,6 +47,16 @@ class RealmManager {
       this.realm.delete(questionRealm);
     });
   }
+
+  deleteQuestions(questions: Questions) {
+    const questionsRealm = this.realm.objectForPrimaryKey(
+      'QuestionsRealm',
+      questions.id,
+    );
+    this.realm.write(() => {
+      this.realm.delete(questionsRealm);
+    });
+  }
 }
 
 export default new RealmManager();

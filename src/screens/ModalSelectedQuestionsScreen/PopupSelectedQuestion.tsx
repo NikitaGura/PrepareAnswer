@@ -8,7 +8,7 @@ import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 const PopupSelectedQuestion = () => {
   const {
-    questions: {currentSelectedQuestions},
+    questions: {currentSelectedQuestions, deleteCurrentSelectedQuestions},
   } = useStore();
 
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
@@ -19,6 +19,11 @@ const PopupSelectedQuestion = () => {
 
   const editQuestions = () => {
     navigation.push(ScreensName.EditQuestions);
+  };
+
+  const deleteSelectedQuestions = () => {
+    deleteCurrentSelectedQuestions();
+    navigation.pop();
   };
 
   return (
@@ -40,7 +45,7 @@ const PopupSelectedQuestion = () => {
       <PrimaryButton
         style={styles.button}
         title={Dictionary.deleteQuestions}
-        onPress={() => {}}
+        onPress={deleteSelectedQuestions}
       />
     </Popup>
   );

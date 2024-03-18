@@ -98,8 +98,8 @@ class QuestionsStore {
   private selectedQuestions: Questions | null = null;
 
   constructor() {
-    makeAutoObservable(this);
     this.list = RealmManager.getQuestionsList();
+    makeAutoObservable(this);
   }
 
   selectQuestions = (questions: Questions) => {
@@ -110,8 +110,21 @@ class QuestionsStore {
     this.list.push(questions);
   };
 
+  deleteCurrentSelectedQuestions = () => {
+    if (!this.currentSelectedQuestions) {
+      return;
+    }
+
+    RealmManager.deleteQuestions(this.currentSelectedQuestions);
+    this.list = this.list.filter(({id}) => id !== this.selectedQuestions?.id);
+  };
+
   get currentSelectedQuestions() {
     return this.list.find(({id}) => id === this.selectedQuestions?.id);
+  }
+
+  get currentList() {
+    return this.list;
   }
 }
 
