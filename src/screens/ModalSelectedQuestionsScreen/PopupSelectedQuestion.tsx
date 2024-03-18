@@ -1,7 +1,7 @@
 import {StyleSheet, Text} from 'react-native';
 import {Popup, PrimaryButton} from '../../components';
 import {Colors, Dictionary} from '../../utils';
-import {EditQuestionsStore, useStore} from '../../stores';
+import {useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
@@ -18,11 +18,7 @@ const PopupSelectedQuestion = () => {
   };
 
   const editQuestions = () => {
-    if (selectedQuestions) {
-      navigation.push(ScreensName.EditQuestions, {
-        editQuestionsStore: new EditQuestionsStore(selectedQuestions),
-      });
-    }
+    navigation.push(ScreensName.EditQuestions);
   };
 
   return (

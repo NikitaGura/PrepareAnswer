@@ -1,5 +1,4 @@
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {EditQuestionStore, EditQuestionsStore} from '../stores';
 import {RouteProp} from '@react-navigation/native';
 
 enum ScreensName {
@@ -16,12 +15,8 @@ type RootStackParamList = {
   CreateQuestions: undefined;
   Modal: undefined;
   CheckingQuestions: undefined;
-  EditQuestions: {
-    editQuestionsStore: EditQuestionsStore;
-  };
-  EditQuestion: {
-    editQuestionStore: EditQuestionStore;
-  };
+  EditQuestions: undefined;
+  EditQuestion: undefined;
 };
 
 // for useNavigation

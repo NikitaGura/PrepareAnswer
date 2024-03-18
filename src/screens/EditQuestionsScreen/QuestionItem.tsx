@@ -4,7 +4,6 @@ import {Question} from '../../models';
 import {Colors} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
 import {EditQuestionsNavigationProp, ScreensName} from '../../navigation';
-import {EditQuestionStore} from '../../stores';
 
 type Props = {
   question: Question;
@@ -14,9 +13,7 @@ const QuestionItem = ({question}: Props) => {
   const navigation = useNavigation<EditQuestionsNavigationProp>();
 
   const onPress = () => {
-    navigation.push(ScreensName.EditQuestion, {
-      editQuestionStore: new EditQuestionStore(question),
-    });
+    navigation.push(ScreensName.EditQuestion);
   };
 
   return (

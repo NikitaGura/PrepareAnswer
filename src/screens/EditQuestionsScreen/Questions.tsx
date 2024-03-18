@@ -1,17 +1,12 @@
 import {FlatList, StyleSheet} from 'react-native';
 import React, {useCallback} from 'react';
 import {observer} from 'mobx-react-lite';
-import {useRoute} from '@react-navigation/native';
-import {EditQuestionsRouteProps} from '../../navigation';
 import {Question} from '../../models';
 import QuestionItem from './QuestionItem';
+import {useStore} from '../../stores';
 
 const Questions = () => {
-  const {
-    params: {editQuestionsStore},
-  } = useRoute<EditQuestionsRouteProps>();
-
-  const {questions} = editQuestionsStore;
+  const {questions} = useStore();
 
   const renderItem = useCallback(
     ({item}: {item: Question}) => <QuestionItem question={item} />,
@@ -24,7 +19,7 @@ const Questions = () => {
       style={styles.list}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      data={questions.questions}
+      data={questions.currentSelectedQuestion?.questions}
     />
   );
 };
