@@ -1,14 +1,18 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {PrimaryTextContent, ScreenTitle, ScreenWrapper} from '../../components';
 import {observer} from 'mobx-react-lite';
-import {useRoute} from '@react-navigation/native';
-import {CheckingQuestionsRouteProps} from '../../navigation';
 import {Colors} from '../../utils';
+import {useStore} from '../../stores';
+import {useEffect} from 'react';
 
 const CheckingQuestionsScreen = () => {
-  const {
-    params: {checkingQuestionStore},
-  } = useRoute<CheckingQuestionsRouteProps>();
+  const {questions, checkingQuestionStore} = useStore();
+
+  useEffect(() => {
+    if (questions.currentSelectedQuestion) {
+      checkingQuestionStore.updateQuestions(questions.currentSelectedQuestion);
+    }
+  }, [checkingQuestionStore, questions.currentSelectedQuestion]);
 
   const BottomLayer = checkingQuestionStore.currentState.getBottomLayout();
 

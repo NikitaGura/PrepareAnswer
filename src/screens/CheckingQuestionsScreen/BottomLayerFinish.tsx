@@ -1,17 +1,13 @@
 import {observer} from 'mobx-react-lite';
 import {PrimaryButton} from '../../components';
 import {Dictionary} from '../../utils';
-import {
-  CheckingQuestionsNavigationProp,
-  CheckingQuestionsRouteProps,
-} from '../../navigation';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {CheckingQuestionsNavigationProp} from '../../navigation';
+import {useNavigation} from '@react-navigation/native';
 import {StyleSheet, View} from 'react-native';
+import {useStore} from '../../stores';
 
 const BottomLayerFinish = () => {
-  const {
-    params: {checkingQuestionStore},
-  } = useRoute<CheckingQuestionsRouteProps>();
+  const {checkingQuestionStore} = useStore();
 
   const navigation = useNavigation<CheckingQuestionsNavigationProp>();
 

@@ -6,17 +6,22 @@ import {
 } from '../models';
 
 class CheckingQuestionStore {
-  private questions: Questions;
+  private questions: Questions | null = null;
   private currentQuestionIndex = 0;
   private rememberedAnswer = 0;
 
   private state: CheckingQuestionsState = new CheckingQuestionsQuestion();
 
-  constructor(questions: Questions) {
-    this.questions = questions;
+  constructor() {
     makeAutoObservable(this);
-    this.state.setContext(this);
   }
+
+  updateQuestions = (questions: Questions) => {
+    this.clearState();
+    this.questions = questions;
+    this.state = new CheckingQuestionsQuestion();
+    this.state.setContext(this);
+  };
 
   public moveTo(state: CheckingQuestionsState): void {
     this.state = state;
@@ -32,7 +37,7 @@ class CheckingQuestionStore {
   }
 
   get currentQuestion() {
-    return this.questions.questions[this.currentQuestionIndex];
+    return this.questions?.questions[this.currentQuestionIndex];
   }
 
   get countRememberedAnswer() {
@@ -72,12 +77,12 @@ class CheckingQuestionStore {
     this.state.showAnswer();
   };
 
-  remeberAnswer = () => {
-    this.state.remeberAnswer();
+  rememberAnswer = () => {
+    this.state.rememberAnswer();
   };
 
-  notRemeberAnswer = () => {
-    this.state.notRemeberAnswer();
+  notRememberAnswer = () => {
+    this.state.notRememberAnswer();
   };
 
   repeat = () => {

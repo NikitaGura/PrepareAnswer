@@ -1,34 +1,26 @@
 import {StyleSheet, Text} from 'react-native';
 import {Popup, PrimaryButton} from '../../components';
 import {Colors, Dictionary} from '../../utils';
-import {
-  CheckingQuestionStore,
-  EditQuestionsStore,
-  useStore,
-} from '../../stores';
+import {EditQuestionsStore, useStore} from '../../stores';
 import {observer} from 'mobx-react-lite';
 import {useNavigation} from '@react-navigation/native';
 import {MainScreenQuestionsNavigationProp, ScreensName} from '../../navigation';
 
 const PopupSelectedQuestion = () => {
   const {
-    questions: {selectedListQuestions},
+    questions: {currentSelectedQuestion},
   } = useStore();
 
   const navigation = useNavigation<MainScreenQuestionsNavigationProp>();
 
   const start = () => {
-    if (selectedListQuestions) {
-      navigation.push(ScreensName.CheckingQuestions, {
-        checkingQuestionStore: new CheckingQuestionStore(selectedListQuestions),
-      });
-    }
+    navigation.push(ScreensName.CheckingQuestions);
   };
 
   const editQuestions = () => {
-    if (selectedListQuestions) {
+    if (selectedQuestions) {
       navigation.push(ScreensName.EditQuestions, {
-        editQuestionsStore: new EditQuestionsStore(selectedListQuestions),
+        editQuestionsStore: new EditQuestionsStore(selectedQuestions),
       });
     }
   };
@@ -38,7 +30,7 @@ const PopupSelectedQuestion = () => {
       <Text
         style={
           styles.textSelected
-        }>{`${Dictionary.selected} ${selectedListQuestions?.title}`}</Text>
+        }>{`${Dictionary.selected} ${currentSelectedQuestion?.title}`}</Text>
       <PrimaryButton
         style={styles.button}
         title={Dictionary.startQuestions}

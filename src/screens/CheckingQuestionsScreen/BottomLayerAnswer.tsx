@@ -2,24 +2,21 @@ import {observer} from 'mobx-react-lite';
 import {PrimaryButton} from '../../components';
 import {Dictionary} from '../../utils';
 import {StyleSheet, View} from 'react-native';
-import {useRoute} from '@react-navigation/native';
-import {CheckingQuestionsRouteProps} from '../../navigation';
+import {useStore} from '../../stores';
 
 const BottomLayerAnswer = () => {
-  const {
-    params: {checkingQuestionStore},
-  } = useRoute<CheckingQuestionsRouteProps>();
+  const {checkingQuestionStore} = useStore();
 
   return (
     <View>
       <PrimaryButton
         title={Dictionary.rememberAnswer}
-        onPress={checkingQuestionStore.remeberAnswer}
+        onPress={checkingQuestionStore.rememberAnswer}
       />
       <View style={styles.space} />
       <PrimaryButton
         title={Dictionary.notRemember}
-        onPress={checkingQuestionStore.notRemeberAnswer}
+        onPress={checkingQuestionStore.notRememberAnswer}
       />
     </View>
   );
